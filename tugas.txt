@@ -1,0 +1,92 @@
+BAB 10 No. 4
+procedure bunga(input A, i, n : integer, output F : real)
+{Menghitung jumlah uang di bank setelah n tahun dengan bunga sebesar i}
+{K. Awal = A, i, n berisi bilangan bulat yang berfungsi sebagai uang, bunga dan tahun
+ serta F belum berisi apapun}
+{K. Akhir = F berisi hasil perhitungan jumlah uang setelah n tahun}
+
+DEKLARASI
+    sum : integer {jumlah perhitungan bunga tahunan}
+    x : real {sebagai perhitungan bunga}
+    
+ALGORITMA
+    x <- (100 + i)/100
+    for 1 to n do
+        sum <- sum + x          {menyimpan jumlah nilai x}
+        x <- x * (100 + i)/100  {membuat x menjadi berpangkat sesuai urutan saat ini}
+    endfor
+    F <- A*sum
+
+program Menabung
+{Menghitung jumlah tabungan setelah n tahun}
+
+DEKLARASI
+    A, i, n : integer
+    F : real
+
+    procedure bunga(input A, i, n : integer, output F : real)
+    {Menghitung jumlah uang di bank setelah n tahun dengan bunga sebesar i}
+
+ALGORITMA
+    read(A, i, n, F)
+    bunga(A, i, n, F)
+
+
+BAB 11 No. 10
+function CekTriple(input a, b, c : integer) -> string
+{Menentukan apakah bilangan a, b, c merupakan triple phytagoras atau bukan}
+
+DEKLARASI
+    {Tidak ada}
+
+ALGORITMA
+    if c*c = a*a+b*b then
+        return "triple phytagoras"
+    else
+        return "bukan triple phytagoras"
+
+program Phytagoras
+{Mengecek apakah 3 bilangan triple phytagoras atau bukan}
+
+DEKLARASI
+    a, b, c : integer
+    function CekTriple(input a, b, c : integer) -> string
+    {Menentukan apakah bilangan a, b, c merupakan triple phytagoras atau bukan}
+
+ALGORITMA
+    read(a, b, c)
+    write(CekTriple(a, b, c))
+
+BAB 12 No. 6
+procedure tukarElemen(input A : larikChar, n : integer, output A : LarikChar)
+{menukar elemen pertama dan terakhir dari larik karakter A}
+{K. Awal : A berisi elemen-elemen yang telah terdefinisi}
+{K. Akhir : elemen pertama dan terakhir dari A telah ditukar nilainya}
+
+DEKLARASI
+    temp : character {penyimpanan sementara untuk menukar elemen A}
+
+ALGORITMA
+    temp <- A[0]
+    A[0] <- A[n-1]
+    A[n-1] <- temp
+    
+program balik
+{Menampilkan kata awal dan kata setelah dibalik huruf pertama dengan terakhirnya}
+
+DEKLARASI
+    i : integer {Indeks dari larik }
+    n : integer {Batas atas larik}
+    type LarikChar : array(1..N) of character
+    A : LarikChar
+    procedure tukarElemen(input n : integer, output A : LarikChar)
+    {menukar elemen pertama dan terakhir dari string A }
+
+ALGORITMA
+    read(n)
+    for i<-1 to n do
+        read(A[i])
+    endfor
+    write("Kalimat sebelum perubahan:", A)
+    tukarElemen(n, A)
+    write("Kalimat setelah perubahan:", A)
