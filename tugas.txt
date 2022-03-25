@@ -30,6 +30,7 @@ DEKLARASI
 ALGORITMA
     read(A, i, n, F)
     bunga(A, i, n, F)
+    write(F)
 
 
 BAB 11 No. 10
