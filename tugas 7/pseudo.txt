@@ -1,4 +1,39 @@
 BAB 14 No 6
+program nilai_mahasiswa
+{Menghitung nilai rata-rata dari setiap mahasiswa dengan jumlah mata kuliah sebanyak n}
+
+DEKLARASI
+M, n, jumSKS, JumNilai, i, j : integer
+NR : array [1..n] of real
+data : record < indeksNilai : character
+                SKS : integer >
+NilaiMhs : array [1..M, 1..n] of data
+
+ALGORITMA
+jumSKS = 0
+jumNilai = 0
+read(M, n)
+for i <- 0 to M-1 do
+    write("Mahasiswa )
+    for j <- 0 to n-1 do
+    begin
+        write("Masukkan Nilai Mata Kuliah", j+1, " : ") 
+        read(NilaiMhs[i, j].indeksNilai)
+        write("Masukkan jumlah SKS : ") 
+        read(NilaiMhs[i, j].SKS)
+        JumNilai <- JumNilai + (nilaiKonversi * NilaiMhs[i, j].SKS)
+        jumSKS <- jumSKS + NilaiMhs[i, j].SKS
+    endfor
+    NR[i] <- JumNilai / jumSKS
+endfor
+    end
+
+
+write("Nilai rata-rata dari setiap mahasiswa adalah : ")
+for i <- 0 to M-1 do
+    write("Mahasiswa ke-", i+1, " : ", NR[i])
+    end
+endfor
 
 
 BAB 15 No 5
@@ -29,13 +64,15 @@ program pencarian
 {mencari suatu bilangan dalam larik bilangan}
 
 DEKLARASI
-N, target, index : integer
+N, target, index, i : integer
 type LarikInt : array [1..N] of integer
 arr : LarikInt 
+function pencarian_interpolasi(input: arr : LarikInt, N, target : integer)
+{salah satu variasi dari pencarian bagidua}
 
 ALGORITMA
 read(N)
-for 0 to (N-1) do:
+for i<-0 to (N-1) do:
     read(arr[i])
 endfor
 read(target)

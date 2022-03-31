@@ -54,6 +54,7 @@ int main() {
         }
         NR[i] = (float)jumNilai / (float)jumSKS;
     }
+    printf("\nNIlai rata-rata (IP) Mahasiswa: \n");
     for (int i = 0; i < M; i++){
         printf("Nilai rata-rata (IP) Mahasiswa %d adalah %.1f\n", i+1, NR[i]);
     }
