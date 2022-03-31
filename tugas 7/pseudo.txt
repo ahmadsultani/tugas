@@ -3,7 +3,7 @@ program nilai_mahasiswa
 {Menghitung nilai rata-rata dari setiap mahasiswa dengan jumlah mata kuliah sebanyak n}
 
 DEKLARASI
-M, n, jumSKS, JumNilai, i, j : integer
+M, n, jumSKS, JumNilai, nilaiKonversi, i, j : integer
 NR : array [1..n] of real
 data : record < indeksNilai : character
                 SKS : integer >
@@ -14,20 +14,24 @@ jumSKS = 0
 jumNilai = 0
 read(M, n)
 for i <- 0 to M-1 do
-    write("Mahasiswa )
     for j <- 0 to n-1 do
-    begin
-        write("Masukkan Nilai Mata Kuliah", j+1, " : ") 
+        nilaiKonversi <- 0
+        case NIlaiMhs[i, j].indeksNilai of
         read(NilaiMhs[i, j].indeksNilai)
-        write("Masukkan jumlah SKS : ") 
+            'A' : nilaiKonversi <- 4
+            'B' : nilaiKonversi <- 3
+            'C' : nilaiKonversi <- 2
+            'D' : nilaiKonversi <- 1
+            'E' : nilaiKonversi <- 0
+            Otherwise : 
+                write("Nilai tidak valid")
+                return 0
         read(NilaiMhs[i, j].SKS)
         JumNilai <- JumNilai + (nilaiKonversi * NilaiMhs[i, j].SKS)
         jumSKS <- jumSKS + NilaiMhs[i, j].SKS
     endfor
     NR[i] <- JumNilai / jumSKS
 endfor
-    end
-
 
 write("Nilai rata-rata dari setiap mahasiswa adalah : ")
 for i <- 0 to M-1 do
@@ -46,18 +50,18 @@ left, right, mid : integer
 ALGORITMA
 left <- 0
 right <- N-1
-while(left != right) or (arr[left] != arr[right]){
+while (left != right) or (arr[left] != arr[right]) do
     mid <- left + (right-left)/(arr[right]-arr[left]) * (target-arr[left])
-    if(arr[mid] == target) then
+    if arr[mid] = target then
         return mid
     else 
-        if(arr[mid] < target) then
+        if arr[mid] < target then
             left <- mid + 1
         else
             right <- mid - 1
         endif
     endif
-}
+endwhile
 return -1
 
 program pencarian
@@ -72,7 +76,7 @@ function pencarian_interpolasi(input: arr : LarikInt, N, target : integer)
 
 ALGORITMA
 read(N)
-for i<-0 to (N-1) do:
+for i<-0 to (N-1) do
     read(arr[i])
 endfor
 read(target)

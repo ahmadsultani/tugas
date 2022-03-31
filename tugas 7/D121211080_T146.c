@@ -26,26 +26,24 @@ int main() {
             NilaiMhs[i][j].IndeksNilai = getchar();
             int nilaiKonversi = 0;
             switch (NilaiMhs[i][j].IndeksNilai){
-                case 'A': case 'a':
+                case 'A': 
                     nilaiKonversi = 4;
                     break;
-                case 'B': case 'b':
+                case 'B': 
                     nilaiKonversi = 3;
                     break;
-                case 'C': case 'c':
+                case 'C': 
                     nilaiKonversi = 2;
                     break;
-                case 'D': case 'd':
+                case 'D': 
                     nilaiKonversi = 1;
                     break;
-                case 'E': case 'e':
+                case 'E': 
                     nilaiKonversi = 0;
                     break;
                 default:
                     printf("Nilai tidak valid\n\n");
-                    system("clear");
-                    system("cls");
-                    return main();
+                    return 0;
             }
             printf("Masukkan Jumlah SKS: ");
             scanf("%d", &NilaiMhs[i][j].SKS);
