@@ -1,0 +1,47 @@
+BAB 14 No 6
+
+
+BAB 15 No 5
+function pencarian_interpolasi(input: arr : LarikInt, N, target : integer)
+{salah satu variasi dari pencarian bagidua}
+
+DEKLARASI
+left, right, mid : integer
+
+ALGORITMA
+left <- 0
+right <- N-1
+while(left != right) or (arr[left] != arr[right]){
+    mid <- left + (right-left)/(arr[right]-arr[left]) * (target-arr[left])
+    if(arr[mid] == target) then
+        return mid
+    else 
+        if(arr[mid] < target) then
+            left <- mid + 1
+        else
+            right <- mid - 1
+        endif
+    endif
+}
+return -1
+
+program pencarian
+{mencari suatu bilangan dalam larik bilangan}
+
+DEKLARASI
+N, target, index : integer
+type LarikInt : array [1..N] of integer
+arr : LarikInt 
+
+ALGORITMA
+read(N)
+for 0 to (N-1) do:
+    read(arr[i])
+endfor
+read(target)
+index = pencarian_interpolasi(arr, N, target)
+if index != 0 then
+    write("Bilangan ditemukan pada indeks ke ", index)
+else 
+    write("Bilangan tidak ditemukan") 
+endif
