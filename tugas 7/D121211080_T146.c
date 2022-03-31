@@ -1,26 +1,61 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+struct data {
+    char IndeksNilai;
+    int SKS;
+};
 
 int main() {
-    int m, n;
-    printf("Masukkan jumlah baris dan kolom matriks (m n): ");
-    scanf("%d %d", &m, &n);
-    char C[m][n];
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("Masukkan nilai matriks C[%d][%d]: ", i, j);
-            scanf("%c", &C[i][j]);
-        }
-    }
+    int M, n;
+    int jumSKS = 0, jumNilai = 0;
+    
+    printf("Masukkan jumlah mahasiswa: ");
+    scanf("%d", &M);
+    printf("Masukkan jumlah mata kuliah: ");
+    scanf("%d", &n);
 
-    int jumA = 0;
-    for (int i = 0; i < m; i++) {
+    struct data NilaiMhs[M][n];
+    float NR[n];
+
+    for (int i = 0; i < M; i++) {
+        printf("\nMahasiswa ke-%d\n", i+1);
         for (int j = 0; j < n; j++) {
-            if (C[i][j] == 'a' || C[i][j] == 'A') {
-                jumA++;
+            printf("Masukkan Nilai Mata Kuliah %d: ", j+1);
+            getchar();
+            NilaiMhs[i][j].IndeksNilai = getchar();
+            int nilaiKonversi = 0;
+            switch (NilaiMhs[i][j].IndeksNilai){
+                case 'A': case 'a':
+                    nilaiKonversi = 4;
+                    break;
+                case 'B': case 'b':
+                    nilaiKonversi = 3;
+                    break;
+                case 'C': case 'c':
+                    nilaiKonversi = 2;
+                    break;
+                case 'D': case 'd':
+                    nilaiKonversi = 1;
+                    break;
+                case 'E': case 'e':
+                    nilaiKonversi = 0;
+                    break;
+                default:
+                    printf("Nilai tidak valid\n\n");
+                    system("clear");
+                    system("cls");
+                    return main();
             }
+            printf("Masukkan Jumlah SKS: ");
+            scanf("%d", &NilaiMhs[i][j].SKS);
+            jumNilai += nilaiKonversi*NilaiMhs[i][j].SKS;
+            jumSKS += NilaiMhs[i][j].SKS;
         }
+        NR[i] = (float)jumNilai / (float)jumSKS;
     }
-
-    printf("Jumlah huruf a: %d\n", jumA);
+    for (int i = 0; i < M; i++){
+        printf("Nilai rata-rata (IP) Mahasiswa %d adalah %.1f\n", i+1, NR[i]);
+    }
     return 0;
 }
