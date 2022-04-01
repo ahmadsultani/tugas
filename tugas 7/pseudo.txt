@@ -16,8 +16,8 @@ read(M, n)
 for i <- 0 to M-1 do
     for j <- 0 to n-1 do
         nilaiKonversi <- 0
-        case NIlaiMhs[i, j].indeksNilai of
         read(NilaiMhs[i, j].indeksNilai)
+        case NIlaiMhs[i, j].indeksNilai of
             'A' : nilaiKonversi <- 4
             'B' : nilaiKonversi <- 3
             'C' : nilaiKonversi <- 2
@@ -33,10 +33,8 @@ for i <- 0 to M-1 do
     NR[i] <- JumNilai / jumSKS
 endfor
 
-write("Nilai rata-rata dari setiap mahasiswa adalah : ")
 for i <- 0 to M-1 do
-    write("Mahasiswa ke-", i+1, " : ", NR[i])
-    end
+    write(NR[i])
 endfor
 
 

@@ -21,7 +21,7 @@ int main() {
     for (int i = 0; i < M; i++) {
         printf("\nMahasiswa ke-%d\n", i+1);
         for (int j = 0; j < n; j++) {
-            printf("Masukkan Nilai Mata Kuliah %d: ", j+1);
+            printf("Masukkan nilai mata kuliah %d: ", j+1);
             getchar();
             NilaiMhs[i][j].IndeksNilai = getchar();
             int nilaiKonversi = 0;
