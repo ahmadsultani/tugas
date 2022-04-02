@@ -1,11 +1,34 @@
-BAB 14 No 6
+BAB 14 
+No 1
+Perbedaan pada deklarasi 2 buah matriks temperatur tekanan
+A
+DEKLARASI
+    const NBarisMaks = ...
+    const NKolomMaks = ...
+    type TP : record < T, P : real >
+    B : array [1..NBarisMaks, 1..NKolomMaks] of TP
+B
+DEKLARASI
+    const NBarisMaks = ...
+    const NKolomMaks = ...
+    type TP : record < T, P : array [1..NBarisMaks, 1..NKolomMaks] of real >
+    B : TP
+Dapat dilihat bahwa:
+A merupakan array dari record yang berisi field T dan P yang bertipe real
+B merupakan record yang berisi field T dan P yang merupakan array dari bilangan real
+Karenanya, cara mengakses elemen-elemen A dan B berbeda
+Bentuk ekivalen dari A dan B untuk mengakses temperatur baris ke-i dan kolom ke-j adalah:
+A. B[i, j].T {array 2 dimensi yang bertipe record dengan field real}
+B. B.T[i, j] {record yang berisi field array T dan P yang bertipe real}
+
+No 6
 program nilai_mahasiswa
 {Menghitung nilai rata-rata dari setiap mahasiswa dengan jumlah mata kuliah sebanyak n}
 
 DEKLARASI
 M, n, jumSKS, JumNilai, nilaiKonversi, i, j : integer
 NR : array [1..n] of real
-data : record < indeksNilai : character
+data : record < indeksNilai : character,
                 SKS : integer >
 NilaiMhs : array [1..M, 1..n] of data
 
