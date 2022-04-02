@@ -40,7 +40,31 @@ for i <- 0 to M-1 do
 endfor
 
 
-BAB 15 No 5
+BAB 15 
+No 1
+program sequential_reversed
+{mencari nilai x dalam larik dengan pencarian beruntun dari elemen terakhir}
+
+DEKLARASI
+x, i, j, N : integer
+arr : array [1..N] of integer
+
+ALGORITMA
+read(N)
+for i <- 1 to N do
+    read(arr[i])
+endfor
+j <- N
+while j >= 1 do
+    if arr[j] = x then
+        write(x, "ditemukan pada indeks ke-", i)
+        return 0
+    endif
+    j <- j - 1 
+endfor
+write(x, "tidak ditemukan dalam array")
+
+No 5
 function pencarian_interpolasi(input: arr : LarikInt, N, target : integer)
 {salah satu variasi dari pencarian bagidua}
 
