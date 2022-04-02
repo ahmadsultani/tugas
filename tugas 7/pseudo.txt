@@ -33,14 +33,16 @@ data : record < indeksNilai : character,
 NilaiMhs : array [1..M, 1..n] of data
 
 ALGORITMA
+A:
 jumSKS = 0
 jumNilai = 0
 read(M, n)
 for i <- 0 to M-1 do
     for j <- 0 to n-1 do
-        nilaiKonversi <- 0
         read(NilaiMhs[i, j].indeksNilai)
-        case NIlaiMhs[i, j].indeksNilai of
+        nilai = NilaiMhs[i, j].indeksNilai
+        nilaiKonversi <- 0
+        case nilai of
             'A' : nilaiKonversi <- 4
             'B' : nilaiKonversi <- 3
             'C' : nilaiKonversi <- 2
@@ -48,7 +50,7 @@ for i <- 0 to M-1 do
             'E' : nilaiKonversi <- 0
             Otherwise : 
                 write("Nilai tidak valid")
-                return 0
+                goto A:
         read(NilaiMhs[i, j].SKS)
         JumNilai <- JumNilai + (nilaiKonversi * NilaiMhs[i, j].SKS)
         jumSKS <- jumSKS + NilaiMhs[i, j].SKS

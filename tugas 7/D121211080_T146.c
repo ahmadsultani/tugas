@@ -24,6 +24,7 @@ int main() {
             printf("Masukkan nilai mata kuliah %d: ", j+1);
             getchar();
             NilaiMhs[i][j].IndeksNilai = getchar();
+            char nilai = NilaiMhs[i][j].IndeksNilai;
             int nilaiKonversi = 0;
             switch (NilaiMhs[i][j].IndeksNilai){
                 case 'A': 
@@ -43,7 +44,7 @@ int main() {
                     break;
                 default:
                     printf("Nilai tidak valid\n\n");
-                    return 0;
+                    return main();
             }
             printf("Masukkan Jumlah SKS: ");
             scanf("%d", &NilaiMhs[i][j].SKS);
