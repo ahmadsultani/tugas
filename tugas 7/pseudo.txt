@@ -37,8 +37,8 @@ A:
 jumSKS = 0
 jumNilai = 0
 read(M, n)
-for i <- 0 to M-1 do
-    for j <- 0 to n-1 do
+for i <- 1 to M do
+    for j <- 1 to n do
         read(NilaiMhs[i, j].indeksNilai)
         nilai = NilaiMhs[i, j].indeksNilai
         nilaiKonversi <- 0
@@ -58,7 +58,7 @@ for i <- 0 to M-1 do
     NR[i] <- JumNilai / jumSKS
 endfor
 
-for i <- 0 to M-1 do
+for i <- 1 to M do
     write(NR[i])
 endfor
 
@@ -95,8 +95,8 @@ DEKLARASI
 left, right, mid : integer
 
 ALGORITMA
-left <- 0
-right <- N-1
+left <- 1
+right <- N
 while (left != right) or (arr[left] != arr[right]) do
     mid <- left + (right-left)/(arr[right]-arr[left]) * (target-arr[left])
     if arr[mid] = target then
@@ -123,13 +123,13 @@ function pencarian_interpolasi(input: arr : LarikInt, N, target : integer)
 
 ALGORITMA
 read(N)
-for i<-0 to (N-1) do
+for i<-1 to N do
     read(arr[i])
 endfor
 read(target)
 index = pencarian_interpolasi(arr, N, target)
-if index != 0 then
-    write("Bilangan ditemukan pada indeks ke ", index)
-else 
+if index = -1 then
     write("Bilangan tidak ditemukan") 
+else 
+    write("Bilangan ditemukan pada indeks ke ", index)
 endif
