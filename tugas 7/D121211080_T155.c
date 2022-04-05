@@ -2,7 +2,7 @@
 
 int interpolation_search(int arr[], int N, int target){
     int left = 0, right = N - 1;
-    while (left != right || arr[left] != arr[right]) {
+    while (left <= right || arr[left] <= arr[right]) {
         int mid = left + (right-left)/(arr[right]-arr[left]) * (target-arr[left]);
         if (arr[mid] == target) return mid;
         else if (arr[mid] < target) left = mid + 1;
