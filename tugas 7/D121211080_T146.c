@@ -6,6 +6,8 @@ struct data {
     int SKS;
 };
 
+int konversi(char nilai, int* nilaiKonversi);
+
 int main() {
     int M, n;
     int jumSKS = 0, jumNilai = 0;
@@ -26,26 +28,7 @@ int main() {
             NilaiMhs[i][j].IndeksNilai = getchar();
             char nilai = NilaiMhs[i][j].IndeksNilai;
             int nilaiKonversi = 0;
-            switch (NilaiMhs[i][j].IndeksNilai){
-                case 'A': 
-                    nilaiKonversi = 4;
-                    break;
-                case 'B': 
-                    nilaiKonversi = 3;
-                    break;
-                case 'C': 
-                    nilaiKonversi = 2;
-                    break;
-                case 'D': 
-                    nilaiKonversi = 1;
-                    break;
-                case 'E': 
-                    nilaiKonversi = 0;
-                    break;
-                default:
-                    printf("Nilai tidak valid\n\n");
-                    return main();
-            }
+            konversi(nilai, &nilaiKonversi);
             printf("Masukkan Jumlah SKS: ");
             scanf("%d", &NilaiMhs[i][j].SKS);
             jumNilai += nilaiKonversi*NilaiMhs[i][j].SKS;
@@ -58,4 +41,27 @@ int main() {
         printf("Nilai rata-rata (IP) Mahasiswa %d adalah %.1f\n", i+1, NR[i]);
     }
     return 0;
+}
+
+int konversi(char nilai, int* nilaiKonversi) {
+    switch (nilai) {
+        case 'A':
+            *nilaiKonversi = 4;
+            break;
+        case 'B':
+            *nilaiKonversi = 3;
+            break;
+        case 'C':
+            *nilaiKonversi = 2;
+            break;
+        case 'D':
+            *nilaiKonversi = 1;
+            break;
+        case 'E':
+            *nilaiKonversi = 0;
+            break;
+        default:
+            printf("Nilai tidak valid\n");
+            exit(1);
+    }
 }
