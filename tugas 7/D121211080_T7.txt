@@ -109,7 +109,7 @@ left, right, mid : integer
 ALGORITMA
 left <- 1
 right <- N
-while (left != right) or (arr[left] != arr[right]) do
+while (left <= right) or (arr[left] <= arr[right]) do
     mid <- left + (right-left)/(arr[right]-arr[left]) * (target-arr[left])
     if arr[mid] = target then
         return mid
