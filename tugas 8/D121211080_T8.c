@@ -38,24 +38,19 @@ void CountingSort(int* arr, int N, int min, int max){
     for (int i = min; i < range; i++){ //untuk bahasa C agar variable 
         count[i] = 0;                  //tidak berisi nilai sebarang
     }
-
     for (int i = 0; i < N; i++) {
         count[arr[i]-min]++;
     }
-
     for (int i = min+1; i < range; i++) {
         count[i] += count[i-1];
     }
-
     for (int i = range-1; i > min; i--) {
         count[i] = count[i-1];
     }
-    
     for (int i = 0; i < N; i++) {
         result[count[arr[i]-min]] = arr[i];
-        count[arr[i]-min]++;
+        count[arr[i]-min]++; //mengubah awal indeks elemen bernilai arr[i]
     }
-         
     for (int i = 0; i < N; i++) {
         arr[i] = result[i];
     }
