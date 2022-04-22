@@ -3,26 +3,8 @@
 void CountingSort(int*, int, int, int);
 
 int main() {
-    int N, NilaiMin, NilaiMaks;
-    printf("Masukkan jumlah data: ");
-    scanf("%d", &N);
-    int L[N];
-    printf("Masukkan data sejumlah %d: ", N);
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &L[i]);
-        if (i == 0) {
-            NilaiMin = L[i];
-            NilaiMaks = L[i];
-        } 
-        else if (NilaiMin > L[i]) {
-            NilaiMin = L[i];
-        } 
-        else if (NilaiMaks < L[i]) {
-            NilaiMaks = L[i];
-        }
-    }
-    printf("NilaiMaks = %d\n", NilaiMaks);
-    printf("NilaiMin = %d\n", NilaiMin);
+    int L[] = {54, 23, 12, -1, 56, 78, 50, 12, 89, 12};
+    int N = 10, NilaiMin = -1, NilaiMaks = 89;
     CountingSort(L, N, NilaiMin, NilaiMaks);
     printf("\nLarik L setelah diurutkan menaik: \n");
     for(int i = 0; i < N; i++){
@@ -52,9 +34,5 @@ void CountingSort(int* arr, int N, int min, int max){
     for (int i = 0; i < N; i++) {
         result[count[arr[i]-min]] = arr[i];
         count[arr[i]-min]++; //mengubah awal indeks elemen bernilai arr[i]
-    }
-    for (int i = 0; i < N; i++) {
-        arr[i] = result[i];
-        printf("result[%d] = %d\n", i, result[i]);
     }
 }

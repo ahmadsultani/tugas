@@ -108,25 +108,9 @@ type LarikInt : array[1..N] of integer
 L : LarikInt
 i : integer
 procedure CountingSort(input/output arr : LarikInt, input N, NilaiMin, NilaiMaks : integer)
-{Mengurutkan larik [1..N] dengan metode pencacahan elemen larik}
+{Mengurutkan larik [1..N] dengan metode pencacahan elemen larik, dimana data telah terdefinisi baik N, NilaiMin, NilaiMaks, dan elemen larik L}
 
 ALGORITMA
-read(N)
-for i <- 1 to N do
-    read(L[i])
-    if (i = 1) then
-        NilaiMin <- L[i]
-        NilaiMaks <- L[i]
-    else
-        if (NilaiMin > L[i]) then
-            NilaiMin <- L[i]
-        else
-            if (NilaiMaks < L[i]) then
-                NilaiMaks <- L[i]
-            endif
-        endif
-    endif
-endfor
 CountingSort(L, NilaiMin, NilaiMaks, N)
 for i <- to N do
     write(L[i])
