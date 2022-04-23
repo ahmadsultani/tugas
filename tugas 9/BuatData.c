@@ -47,6 +47,7 @@ int main(){
         fwrite(&DataMhs2, sizeof(DataMhs2), 1, Arsip2);
         printf("\nNIM: "); gets(DataMhs2.nim); fflush(stdin);
     }
+    
     Arsip2 = fopen("Arsip2.bin", "rb");
     fread(&DataMhs2, sizeof(DataMhs2), 1, Arsip2);
     while(!feof(Arsip2)) {

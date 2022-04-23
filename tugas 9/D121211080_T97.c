@@ -53,21 +53,24 @@ int main() {
     printf("\n");
 
     Arsip1 = fopen("Arsip1.bin", "rb");
-    Arsip2 = fopen("Arsip2.bin", "rb");
     fread(&DataMhs1, sizeof(DataMhs1), 1, Arsip1);
-    fread(&DataMhs2, sizeof(DataMhs2), 1, Arsip2);
     while (!feof(Arsip1)) {
-        if (strcmp(DataMhs1.nim, DataMhs2.nim) == 0) {
-            strcpy(DataMhs3.nim, DataMhs1.nim);
-            strcpy(DataMhs3.nama, DataMhs1.nama);
-            DataMhs3.ip = DataMhs2.ip;
-            fwrite(&DataMhs3, sizeof(DataMhs3), 1, Arsip3);
-        }
-        fread(&DataMhs1, sizeof(DataMhs1), 1, Arsip1);
+        Arsip2 = fopen("Arsip2.bin", "rb");
         fread(&DataMhs2, sizeof(DataMhs2), 1, Arsip2);
+        while(!feof(Arsip2)){
+            if (strcmp(DataMhs1.nim, DataMhs2.nim) == 0) {
+                strcpy(DataMhs3.nim, DataMhs1.nim);
+                strcpy(DataMhs3.nama, DataMhs1.nama);
+                DataMhs3.ip = DataMhs2.ip;
+                fwrite(&DataMhs3, sizeof(DataMhs3), 1, Arsip3);
+                break;
+            }
+            fread(&DataMhs2, sizeof(DataMhs2), 1, Arsip2);
+        }
+        fclose(Arsip2);
+        fread(&DataMhs1, sizeof(DataMhs1), 1, Arsip1);
     }
     fclose(Arsip1);
-    fclose(Arsip2);
     fclose(Arsip3);
 
     Arsip3 = fopen("Arsip3.bin", "rb");
