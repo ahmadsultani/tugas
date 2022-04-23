@@ -1,0 +1,42 @@
+program ArsipBaru
+{Membuat arsip baru dengan struktur NIM, Nama, IP yang berisi irisan dari 2 buah arsip. Struktur arsip pertama adalah NIM, Nama, Alamat, Nomor Telepon, dan struktur arsip kedua adalah NIM, Jenis Kelamin, IP. Kedua arsip terurut berdasarkan NIM}
+
+DEKLARASI
+type DataMhs1 : record <NIM, Nama, Alamat, NomorTelepon : string>
+type DataMhs2 : record <NIM : string, JenisKelamin : character, IP : real> 
+type DataMhs3 : record <NIM, Nama : string, IP : real>
+Arsip1 : File of DataMhs1
+Arsip2 : File of DataMhs2
+Arsip3 : File of DataMhs3
+
+Algoritma
+Open(Arsip1, 1)
+Open(Arsip2, 1)
+Open(Arsip3, 2)
+
+while (not EOF(Arsip1)) do
+    Fread(Arsip1, DataMhs1)
+    while (not EOF(Arsip2)) do
+        Fread(Arsip2, DataMhs2)
+        if (DataMhs1.NIM = DataMhs2.NIM) then
+            DataMhs3.NIM = DataMhs1.NIM
+            DataMhs3.Nama = DataMhs1.Nama
+            DataMhs3.IP = DataMhs2.IP
+            Fwrite(Arsip3, DataMhs3)
+            Fwrite(Arsip3, DataMhs3)
+        endif
+    endwhile
+endwhile
+
+Close(Mhs1)
+Close(Mhs2)
+Close(Mhs3)
+
+Open(Arsip3, 2)
+
+while (not EOF(Arsip3)) do
+    Fread(Arsip3, DataMhs3)
+    write(DataMhs3.NIM, DataMhs3.Nama, DataMhs3.IP)
+endwhile
+
+Close(Arsip3)
