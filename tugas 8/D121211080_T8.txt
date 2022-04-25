@@ -1,7 +1,8 @@
+Bab 16 No. 1
 Pengurutan menaik untuk sekumpulan data integer berikut:
 54, 23, 12, 56, 78, 50, 12, 89, 12
 
-procedure BubbleSort(input/output Arr = LarikInt, input N: integer)
+procedure BubbleSort(input/output Arr : LarikInt, input N: integer)
 {Pengurutan menaik elemen larik Arr[1..N] dengan metode pengurutan apung}
 {K. Awal: elemen larik Arr sudah terdefinisi nilainya}
 {K. Akhir: elemen larik Arr sudah terurut menaik}
@@ -21,7 +22,7 @@ for i <- 1 to N do
     endfor
 endfor
 
-procedure SelectionSort(input/output Arr = LarikInt, input N: integer)
+procedure SelectionSort(input/output Arr : LarikInt, input N: integer)
 {Pengurutan menaik dengan metode pengurutan seleski-minimum}
 {K. Awal: elemen larik Arr sudah terdefinisi nilainya}
 {K. Akhir: elemen larik Arr sudah terurut menaik}
@@ -43,7 +44,7 @@ for i <- 1 to N do
     Arr[min] <- temp
 endfor
 
-procedure InsertionSort(input/output Arr = LarikInt, input N: integer)
+procedure InsertionSort(input/output Arr : LarikInt, input N: integer)
 {Pengurutan menaik dengan metode pengurutan sisip}
 {K. Awal: elemen larik Arr sudah terdefinisi nilainya}
 {K. Akhir: elemen larik Arr sudah terurut menaik}
@@ -62,7 +63,7 @@ for i <- 2 to N do
     Arr[j+1] <- key
 endfor
 
-procedure ShellSort
+procedure ShellSort(input/output Arr : LarikInt, input N: integer)
 {Pengurutan menaik dengan metode pengurutan shell dengan step 5,3,1}
 {K. Awal: elemen larik Arr sudah terdefinisi nilainya}
 {K. Akhir: elemen larik Arr sudah terurut menaik}
@@ -83,12 +84,22 @@ while step >= 1 do
                 j <- j - step
             endwhile
             Arr[j+step] <- key
+            i <- i + step
         endwhile
     endfor
     step <- step - 2
 endwhile
 
-program no8
+Bab 16 No. 2
+Suatu dikatakan tidak stabil jika misalnya terdapat elemen 1 12(1) 0 4 -1 12(2) -5 dan di hasil pengurutannya 12(2) muncul lebih dulu daripada 12(1). Hal ini dapat terjadi karena kita menukar-nukar elemen yang berjauh-jauhan. Oleh karena itu, algoritma pengurutan yang stabil adalah algoritma yang tidak menggunakan metode tukar elemen atau menggunakan metode tukar elemen namun hanya menukar elemen dengan elemen tepat disampingnya. Algoritma tersebut adalah pengurutan apung, pengurutan shell, dan pengurutan sisip. algoritma pengurutan yang tidak stabil adalah penguruan seleksi.
+misalkan 54, 23, 12', 56, 78, 50, 12'', 89, 12'''.
+pada algoritma penguruan sisip, apung, dan shell hasil pengurutannya adalah:
+12' 12'' 12''' 23 50 54 56 78 89 (setiap 12 diurutkan sesuai urutan yang tepat)
+sedangkan pada algoritma pengurutan seleksi:
+12''' 12'' 12' 23 50 54 56 78 89 (urutan angka 12 tidak tepat)
+
+Bab 16 No. 8
+program sorting
 {Mengurutkan larik menggunakan metode counting sort (pengurutan pencacahan)}
 
 DEKLARASI
@@ -96,54 +107,39 @@ NilaiMin, NilaiMaks, N : integer
 type LarikInt : array[1..N] of integer
 L : LarikInt
 i : integer
-procedure CountingSort(input/output arr : LarikInt, input N, NilaiMin, NilaiMaks : integer)
-{Mengurutkan larik [1..N] dengan metode pencacahan elemen larik}
+procedure CountingSort(input/output arr : LarikInt, input N, min, max : integer)
+{Mengurutkan larik [1..N] dengan metode pencacahan elemen larik, dimana data telah terdefinisi baik N, min, max, dan elemen larik L}
 
 ALGORITMA
-read(N)
-for i <- to N do
-    read(L[i])
-    if (i = 1) then
-        NilaiMin <- L[i]
-        NilaiMaks <- NilaiMin 
-    else
-        if (NilaiMin > L[i]) then
-            NilaiMin <- L[i]
-        else
-            if (NilaiMaks < L[i]) then
-                NilaiMaks <- L[i]
-            endif
-        endif
-    endif
-endfor
 CountingSort(L, NilaiMin, NilaiMaks, N)
 for i <- to N do
     write(L[i])
 endfor
 
-procedure CountingSort(input/output arr : LarikInt, input N, NilaiMin, NilaiMaks : integer)
+procedure CountingSort(input/output arr : LarikInt, input N, min, max : integer)
 {Mengurutkan larik [1..N] dengan metode pencacahan elemen larik}
-{K. Awal: Larik L terdefinisi elemen-elemennya, N, NilaiMin, dan NilaiMaks terdefinisi}
+{K. Awal: Larik L terdefinisi elemen-elemennya, N, min, dan max terdefinisi}
 {K. Akhir: Larik L terurut menaik}
 
 DEKLARASI
 Result : LarikInt
-count : array [NilaiMin..NilaiMaks] of integer
+count : array [min..max] of integer
 i, range : integer
 
 ALGORITMA
-range <- NilaiMaks - NilaiMin
-for i<- 1 to N do                       {hitung jumlah tiap elemen dalam Larik L}
-    count[arr[i]-NilaiMin] <- count[arr[i]-NilaiMin] + 1
+range <- max - min
+for i <- 1 to N do             {hitung jumlah tiap elemen dalam Larik L}
+    count[arr[i]-min] <- count[arr[i]-min] + 1
 endfor
-for i <- NilaiMin+1 to range do         {hitung jumlah kumulatif}
+for i <- 2 to range do         {hitung jumlah kumulatif}
     count[i] <- count[i-1]
 endfor
-for i <- range downto NilaiMin+1 do     {geser ke kanan sebanyak 1}
-    count[i] <- count[i-1]
+for i <- range downto 2 do     {geser ke kanan sebanyak 1 untuk}
+    count[i] <- count[i-1]     {menentukan posisi awal masing-masing elemen}
 endfor
+count[1] <- 1                  {elemen pertama dimulai dari posisi pertama}
 for i <- 1 to N do
-    result[count[arr[i]-NilaiMin]] <- arr[i]
+    result[count[arr[i]-min]] <- arr[i]
     count[arr[i]] <- count[arr[i]] + 1  {indeks bertambah 1}
 endfor
 for i <- 1 to N do

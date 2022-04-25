@@ -1,0 +1,81 @@
+Bab 17 No. 7
+program ArsipBaru
+{Membuat arsip baru dengan struktur NIM, Nama, IP yang berisi irisan dari 2 buah arsip. Struktur arsip pertama adalah NIM, Nama, Alamat, Nomor Telepon, dan struktur arsip kedua adalah NIM, Jenis Kelamin, IP. Kedua arsip terurut berdasarkan NIM}
+
+DEKLARASI
+type Data1 : record <NIM, Nama, Alamat, NomorTelepon : string>
+type Data2 : record <NIM : string, JenisKelamin : character, IP : real> 
+type Data3 : record <NIM, Nama : string, IP : real>
+DataMhs1 : Data1
+DataMhs2 : Data2
+DataMhs3 : Data3
+Arsip1 : File of DataMhs1
+Arsip2 : File of DataMhs2
+Arsip3 : File of DataMhs3
+
+Algoritma
+Open(Arsip1, 1)
+Open(Arsip3, 2)
+
+while (not EOF(Arsip1)) do
+    Fread(Arsip1, DataMhs1)
+    Open(Arsip2, 1)
+    while (not EOF(Arsip2)) do
+        Fread(Arsip2, DataMhs2)
+        if (DataMhs1.NIM = DataMhs2.NIM) then
+            DataMhs3.NIM <- DataMhs1.NIM
+            DataMhs3.Nama <- DataMhs1.Nama
+            DataMhs3.IP <- DataMhs2.IP
+            Fwrite(Arsip3, DataMhs3)
+            break
+        endif
+    endwhile
+    Close(Arsip2)
+endwhile
+
+Close(Arsip1)
+Close(Arsip3)
+
+Bab 17 No. 14
+program CariKata
+{Program mencari kata terpanjang dalam suatu teks, jika teks kosong maka kata terpanjang yang dihasilkan adalah string kosong}
+
+DEKLARASI 
+kata : string
+teks : File of character
+procedure KataTerpanjang(input teks : File of character, output kata : string)
+{Mencari kata terpanjang dari arsip teks}
+
+ALGORITMA
+Open(teks, 1)
+kata <- ""
+KataTerpanjang(teks, kata)
+Close(teks)
+write(kata)
+
+procedure KataTerpanjang(input teks : File of character, output kata : string)
+{Mencari kata terpanjang dari arsip teks}
+
+DEKLARASI
+kar : character 
+count, countTemp : integer
+kataTemp : string  
+
+ALGORITMA
+kataTemp <- ""
+count <- 0
+countTemp <- 0
+while (not EOF(Teks)) do
+    Fread(Teks, kar)
+    if kar != ' ' and kar != '\n' then
+        kataTemp <- kataTemp + kar
+        count <- count + 1
+    else
+        kataTemp <- ""
+        countTemp <- 0
+    endif
+    if countTemp > count then
+        kata <- kataTemp
+        count <- countTemp
+    endif
+endwhile
