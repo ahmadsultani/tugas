@@ -1,0 +1,18 @@
+program ArrayBaru
+{Membaca dari keyboard 3 array A, B, C masing masing 5 elemen kemudian mengisikan A, B, C ke matriks D 3x5. Kemudian rata-rata dari matriks D dihitung. Di akhir tampilkan array A,B,C, D dan rata}
+
+DEKLARASI
+RATA : real
+jumlah : integer
+n : integer
+A, B, C : array [1..n] of integer
+D : array [1..3, 1..5] of integer
+
+ALGORITMA
+n <- 0
+ReadArr(A, n)
+
+
+procedure ReadArr
+
+procedure PrintArr
