@@ -4,7 +4,7 @@ public class QueueTest {
         ArrayQueue aq = new ArrayQueue(N);
         System.out.println("ENQUEUE Operation");
         for (int i = 0; i<N; i++) {
-            aq.enqueue("Orang-"+(i+1)); //orang-1 orang-2  orang + nama
+            aq.enqueue("Orang-"+(i+1));
             System.out.print("Masuk ke antrian: "+"Orang-"+(i+1));
             System.out.print(" Yang paling depan: "+aq.peek());
             System.out.println(" Jumlah antrian: "+aq.size());
