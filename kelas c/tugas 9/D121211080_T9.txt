@@ -13,7 +13,7 @@ Arsip1 : File of DataMhs1
 Arsip2 : File of DataMhs2
 Arsip3 : File of DataMhs3
 
-Algoritma
+ALGORITMA
 Open(Arsip1, 1)
 Open(Arsip3, 2)
 

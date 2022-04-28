@@ -31,11 +31,11 @@ int main() {
     Data3 DataMhs3;
 
     printf("Menampilkan Data Arsip 1\n");
-    printf("%-15s%-15s%-15s%-13s\n", "NIM", "Nama", "Alamat", "No HP");
-    printf("============================================================\n");
+    printf("%-15s%-25s%-25s%-13s\n", "NIM", "Nama", "Alamat", "No HP");
+    printf("============================================================================\n");
     fread(&DataMhs1, sizeof(DataMhs1), 1, Arsip1);
     while(!feof(Arsip1)) {
-        printf("%-15s%-15s%-15s%-15s\n", DataMhs1.nim, DataMhs1.nama, DataMhs1.alamat, DataMhs1.nomorTelepon);
+        printf("%-15s%-25s%-25s%-15s\n", DataMhs1.nim, DataMhs1.nama, DataMhs1.alamat, DataMhs1.nomorTelepon);
         fread(&DataMhs1, sizeof(DataMhs1), 1, Arsip1);
     }
     fclose(Arsip1);
@@ -75,11 +75,11 @@ int main() {
 
     Arsip3 = fopen("Arsip3.bin", "rb");
     printf("Menampilkan Data Arsip 3\n");
-    printf("%-15s%-15s%-4s\n", "NIM", "Nama", "IP");
-    printf("=========================================\n");
+    printf("%-15s%-25s%-4s\n", "NIM", "Nama", "IP");
+    printf("==============================================\n");
     fread(&DataMhs3, sizeof(DataMhs3), 1, Arsip3);
     while(!feof(Arsip3)) {
-        printf("%-15s%-15s%-13.2f\n", DataMhs3.nim, DataMhs3.nama, DataMhs3.ip);
+        printf("%-15s%-25s%-13.2f\n", DataMhs3.nim, DataMhs3.nama, DataMhs3.ip);
         fread(&DataMhs3, sizeof(DataMhs3), 1, Arsip3);
     }
     fclose(Arsip3);
