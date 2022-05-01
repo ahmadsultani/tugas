@@ -37,22 +37,6 @@ Close(Arsip1)
 Close(Arsip3)
 
 Bab 17 No. 14
-program CariKata
-{Program mencari kata terpanjang dalam suatu teks, jika teks kosong maka kata terpanjang yang dihasilkan adalah string kosong}
-
-DEKLARASI 
-kata : string
-teks : File of character
-procedure KataTerpanjang(input teks : File of character, output kata : string)
-{Mencari kata terpanjang dari arsip teks}
-
-ALGORITMA
-Open(teks, 1)
-kata <- ""
-KataTerpanjang(teks, kata)
-Close(teks)
-write(kata)
-
 procedure KataTerpanjang(input teks : File of character, output kata : string)
 {Mencari kata terpanjang dari arsip teks}
 
@@ -69,7 +53,7 @@ while (not EOF(Teks)) do
     Fread(Teks, kar)
     if kar != ' ' and kar != '\n' then
         kataTemp <- kataTemp + kar
-        count <- count + 1
+        countTemp <- countTemp + 1
     else
         kataTemp <- ""
         countTemp <- 0
