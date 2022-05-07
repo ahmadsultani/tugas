@@ -25,8 +25,9 @@ for row <- 1 to 3 do
         2: data <- B[col]
         3: data <- C[col]
         endcase
-    D[row, col] <- data
-    RATA <- RATA + data
+        D[row, col] <- data
+        RATA <- RATA + data
+    endfor
 endfor
 PrintArr(A, n)
 PrintArr(B, n)
@@ -62,5 +63,3 @@ for i <- 1 to size do
     write(arr[i])
 endfor
 write("\n")
-
-Kita hitung satu satu 
