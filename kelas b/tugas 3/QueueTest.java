@@ -1,20 +1,27 @@
+import java.util.Scanner;
+
 public class QueueTest {
     public static void main(String[] args) {
-        int N = 9;
+        Scanner input = new Scanner(System.in);
+        System.out.print("Jumlah orang yang mau diantri = ");
+        int N = input.nextInt();
+        int stop, count = 0;
         ArrayQueue aq = new ArrayQueue(N);
-        System.out.println("ENQUEUE Operation");
-        for (int i = 0; i<N; i++) {
-            aq.enqueue("Orang-"+(i+1));
-            System.out.print("Masuk ke antrian: "+"Orang-"+(i+1));
-            System.out.print(" Yang paling depan: "+aq.peek());
-            System.out.println(" Jumlah antrian: "+aq.size());
-        }
-
-        System.out.println("\nDEQUEUE Operation");
-        for (int i = 0; i<N; i++) {
-            System.out.println(" Yang paling depan: "+aq.peek());
-            System.out.print("Yang dilayani: "+aq.dequeue());
-            System.out.print(" Jumlah antrian: "+aq.size());
+        while (N >= 0) {
+            if (N < 5) stop = N;
+            else stop = 5;
+            for (int i = 0; i < stop; i++) {
+                aq.enqueue("Orang-"+(count+1));
+                System.out.print("+ Masuk ke antrian: "+"Orang-"+(count+1));
+                System.out.print(" Yang paling depan: "+aq.peek());
+                System.out.println(" Jumlah antrian: "+aq.size());
+                count++;
+            }
+            for (int i = 0; i < stop; i++) {
+                System.out.print("- Yang dilayani: "+aq.dequeue());
+                System.out.println(" Jumlah antrian: "+aq.size());
+            }
+            N = N - 5;
         }
     }
 }
