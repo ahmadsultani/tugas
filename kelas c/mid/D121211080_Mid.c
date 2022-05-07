@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void ReadArrArr(int arr[], int size) {
+void ReadArr(int arr[], int size) {
     for (int i = 0; i < size; i++) {
         scanf("%d", &arr[i]);
     }
@@ -14,16 +14,17 @@ void PrintArr(int arr[], int size){
 }
 
 int main() {
-    int A[5], B[5], C[5];
-    int D[3][5];
+    int n = 5;
+    int A[n], B[n], C[n];
+    int D[3][n];
     float RATA = 0;
     int data;
     printf("Masukkan Data A:\n");
-    ReadArr(A, 5);
+    ReadArr(A, n);
     printf("Masukkan Data B:\n");
-    ReadArr(B, 5);
+    ReadArr(B, n);
     printf("Masukkan Data C:\n");
-    ReadArr(C, 5);     
+    ReadArr(C, n);     
     for (int row = 0; row < 3; row++){
         for (int col = 0; col < 5; col++){
             switch (row) {
