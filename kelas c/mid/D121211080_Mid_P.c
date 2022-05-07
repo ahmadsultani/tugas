@@ -43,19 +43,19 @@ int main() {
         }
     }
     printf("\nA : ");
-    PrintArr(A, 5);
+    PrintArr(A, n);
     printf("\nB : ");
-    PrintArr(B, 5);
+    PrintArr(B, n);
     printf("\nC : ");
-    PrintArr(C, 5);
+    PrintArr(C, n);
     printf("\nMatriks D:\n");
     for (int row = 0; row < 3; row++) {
-        for (int col = 0; col < 5; col++) {
+        for (int col = 0; col < n; col++) {
             printf("%d ", D[row][col]);
         }
         printf("\n");
     }
-    RATA = RATA / (5 * 3);
+    RATA = RATA / (n * 3);
     printf("\nrata-rata: %g", RATA);
     return 0;
 }
