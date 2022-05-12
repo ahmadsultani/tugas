@@ -42,7 +42,7 @@ public class ArrayStack implements Stack
 	public void push(Object obj) throws StackFullException
 	{
 		if (isFull())
-			throw new StackEmptyException ("Stack is full.");
+			throw new StackFullException ("Stack is full.");
 		top = top + 1;
 		S[top] = obj;
 	}
@@ -57,8 +57,6 @@ public class ArrayStack implements Stack
 		return elem;
 	}
 }
-
-
 
 
 

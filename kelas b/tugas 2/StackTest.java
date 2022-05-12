@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 public class StackTest
 {
 	public static void main(String[] args)
 	{
-		int N=40;
+		int N=45;
 		ArrayStack myStack = new ArrayStack(N);
+
 		System.out.println ("\nOperasi PUSH");
 
 		for (int i = 0; i < N; i++)
