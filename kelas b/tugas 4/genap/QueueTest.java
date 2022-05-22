@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class QueueTest {
     public static void main(String[] args) {
         LinkedQueue aq = new LinkedQueue();
@@ -16,7 +17,6 @@ public class QueueTest {
             }
             aq.enqueue(name.charAt(i));
             System.out.print("+ Masuk ke antrian: " + name.charAt(i));
-            System.out.print(" Yang paling depan: "+aq.peek());
             System.out.println(" Jumlah antrian: "+aq.size());
         }
 
