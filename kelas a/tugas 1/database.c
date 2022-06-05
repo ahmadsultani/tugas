@@ -6,9 +6,9 @@ typedef struct {
     char alamat[30];
     char telpon[15];
     char email[30];
-} Contacts;
+} Contact;
 
-Contacts contacts[30];
+Contact contacts[30];
 
 int main(){
     int pilih, last_index = -1;
