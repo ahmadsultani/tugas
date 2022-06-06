@@ -41,5 +41,5 @@ int main() {
         } while(lanjut != 'Y' && lanjut != 'N');
 
     } while (lanjut == 'Y');
-    printf("Selesai");
+    printf("Selesai\n");
 }
