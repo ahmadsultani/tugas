@@ -131,7 +131,7 @@ void addData(hashTable* ht) {
         strcpy(ht->contacts[index].nama, temp.nama);
         strcpy(ht->contacts[index].email, temp.email);
         strcpy(ht->contacts[index].notelp, temp.notelp);
-        printf("Berhasil menambah data\n");
+        printf("Kontak berhasil ditambah\n");
     }
 }
 
