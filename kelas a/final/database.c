@@ -119,7 +119,7 @@ void addData(hashTable* ht) {
     system("cls");
     printf("Menambah Kontak\n");
     input();
-    key = getKey(temp.nama);
+    key = getKey(temp.notelp);
     index = hash(key);
     trackIndex = 0;
     while (strcmp(ht->contacts[index].notelp, "\0") != 0 && trackIndex++ < SIZE) {
@@ -138,7 +138,7 @@ void addData(hashTable* ht) {
 void removeData(hashTable* ht) {
     char* temp = malloc(20);
     system("cls");
-    printf("Masukkan nama kontak yang ingin dihapus: ");
+    printf("Masukkan nomor telepon kontak yang ingin dihapus: ");
     scanf("%^[\n]", temp);
     fflush(stdin);
     int index = search(*ht, temp);
@@ -151,11 +151,11 @@ void removeData(hashTable* ht) {
     }
 }
 
-int search(hashTable ht, char* nama) {
-    int address = hash(getKey(nama));
+int search(hashTable ht, char* notelp) {
+    int address = hash(getKey(notelp));
     int trackIndex = 0;
-    while (strcmp(ht.contacts[address].nama, "\0") != 0 && trackIndex < SIZE) {
-        if (strcmp(ht.contacts[address].nama, nama) == 0) {
+    while (strcmp(ht.contacts[address].notelp, "\0") != 0 && trackIndex < SIZE) {
+        if (strcmp(ht.contacts[address].notelp, notelp) == 0) {
             return address;
         }
         address = hash(address + 1);
@@ -167,7 +167,7 @@ int search(hashTable ht, char* nama) {
 void searchData(hashTable ht) {
     char* str = malloc(40);
     system("cls");
-    printf("Masukkan nama kontak yang ingin dicari: ");
+    printf("Masukkan nomor telepon kontak yang ingin dicari: ");
     scanf("%[^\n]", str);
     fflush(stdin);
     int index = search(ht, str);
@@ -182,12 +182,12 @@ void searchData(hashTable ht) {
 }
 
 void editData(hashTable* ht) {
-    char* nama = malloc(40);
+    char* notelp = malloc(40);
     system("cls");
-    printf("Masukkan nama kontak yang ingin diedit: ");
-    scanf("%[^\n]", nama);
+    printf("Masukkan nomor telepon kontak yang ingin diedit: ");
+    scanf("%[^\n]", notelp);
     fflush(stdin);
-    int index = search(*ht, nama);
+    int index = search(*ht, notelp);
     if (index == -1) {
         printf("\nKontak tidak ditemukan\n");
         return;
@@ -197,14 +197,14 @@ void editData(hashTable* ht) {
     strcpy(ht->contacts[index].nama, temp.nama);
     strcpy(ht->contacts[index].email, temp.email);
     strcpy(ht->contacts[index].notelp, temp.notelp);
-    printf("Berhasil mengedit kontakn\n");
+    printf("Berhasil mengedit kontak\n");
 }
 
 void printHashTable(hashTable ht) {
     system("cls");
     printf("Daftar Kontak");
     for (int i = 0; i < SIZE; i++) {
-        if (strcmp(ht.contacts[i].nama, "\0") == 0) continue;
+        if (strcmp(ht.contacts[i].notelp, "\0") == 0) continue;
         printf("\n%2d  Nama: %s\n", i+1, ht.contacts[i].nama);
         printf("    Email: %s\n", ht.contacts[i].email);
         printf("    No. Telepon: %s\n", ht.contacts[i].notelp);
