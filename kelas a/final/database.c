@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #define SIZE 30
-
 typedef struct  {
     char nama[40];
     char email[40];
     char notelp[40];
 } Contact;
-
 typedef struct {
     Contact contacts[SIZE];
 } hashTable;
@@ -136,10 +134,10 @@ void addData(hashTable* ht) {
 }
 
 void removeData(hashTable* ht) {
-    char* temp = malloc(20);
+    char* temp = malloc(40);
     system("cls");
     printf("Masukkan nomor telepon kontak yang ingin dihapus: ");
-    scanf("%^[\n]", temp);
+    scanf("%[^\n]", temp);
     fflush(stdin);
     int index = search(*ht, temp);
     if (index == -1) printf("\nKontak tidak ditemukan\n"); 
@@ -154,8 +152,8 @@ void removeData(hashTable* ht) {
 int search(hashTable ht, char* notelp) {
     int address = hash(getKey(notelp));
     int trackIndex = 0;
-    while (strcmp(ht.contacts[address].notelp, "\0") != 0 && trackIndex < SIZE) {
-        if (strcmp(ht.contacts[address].notelp, notelp) == 0) {
+    while (strcmp((ht).contacts[address].notelp, "\0") != 0 && trackIndex < SIZE) {
+        if (strcmp((ht).contacts[address].notelp, notelp) == 0) {
             return address;
         }
         address = hash(address + 1);
