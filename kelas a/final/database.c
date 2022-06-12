@@ -18,7 +18,7 @@ int linearrehash(hashTable*, int);
 void addData(hashTable*);
 void removeData(hashTable*);
 void editData(hashTable*);
-int search(hashTable, char*);
+int search(hashTable*, char*);
 void searchData(hashTable);
 void printHashTable(hashTable);
 int Choose();
@@ -30,7 +30,7 @@ int main() {
     initHashTable(&ht);
     int choose = Choose();
 
-    while (choose != 6) {
+    while (choose != 5) {
         switch (choose) {
             case 1:
                 addData(&ht);
@@ -44,9 +44,6 @@ int main() {
             case 4:
                 searchData(ht);
             break;    
-            case 5:
-                printHashTable(ht);
-            break;
             default:
                 printf("Pilihan tidak valid!\n");
         }
@@ -66,9 +63,8 @@ int Choose() {
     printf("2. Hapus Kontak\n");
     printf("3. Edit Kontak\n");
     printf("4. Cari Kontak\n");
-    printf("5. Daftar Kontak\n");
-    printf("6. Keluar\n");
-    printf("Pilih (1-6): ");
+    printf("5. Keluar\n");
+    printf("Pilih (1-5): ");
     scanf("%d", &chosen);
     fflush(stdin);
     return chosen;
@@ -79,10 +75,13 @@ int hash(int key) {
 }
 
 int linearrehash(hashTable* ht, int address) {
-    while(strcmp(ht->contacts[address].notelp, "\0") != 0) {
+    int trackIndex = 0;
+    while(strcmp(ht->contacts[address].notelp, "\0") != 0 && trackIndex <= SIZE) {
         address = hash(address+1);
+        trackIndex++;
     }
-    return address;
+    if (trackIndex > SIZE) return -1;
+    else return address;
 }
 
 void initHashTable(hashTable* ht) {
@@ -119,11 +118,8 @@ void addData(hashTable* ht) {
     input();
     key = getKey(temp.notelp);
     index = hash(key);
-    trackIndex = 0;
-    while (strcmp(ht->contacts[index].notelp, "\0") != 0 && trackIndex++ < SIZE) {
-        index = hash(index+1);
-    }
-    if (trackIndex >= SIZE) {
+    index = linearrehash(ht, index);
+    if (index == -1) {
         printf("Kontak penuh!\n");
     } else {
         strcpy(ht->contacts[index].nama, temp.nama);
@@ -134,12 +130,12 @@ void addData(hashTable* ht) {
 }
 
 void removeData(hashTable* ht) {
-    char* temp = malloc(40);
+    char* str = malloc(40);
     system("cls");
     printf("Masukkan nomor telepon kontak yang ingin dihapus: ");
-    scanf("%[^\n]", temp);
+    scanf("%[^\n]", str);
     fflush(stdin);
-    int index = search(*ht, temp);
+    int index = search(ht, str);
     if (index == -1) printf("\nKontak tidak ditemukan\n"); 
     else {
         strcpy(ht->contacts[index].nama, "\0");
@@ -149,17 +145,15 @@ void removeData(hashTable* ht) {
     }
 }
 
-int search(hashTable ht, char* notelp) {
+int search(hashTable* ht, char* notelp) {
     int address = hash(getKey(notelp));
     int trackIndex = 0;
-    while (strcmp((ht).contacts[address].notelp, "\0") != 0 && trackIndex < SIZE) {
-        if (strcmp((ht).contacts[address].notelp, notelp) == 0) {
-            return address;
-        }
-        address = hash(address + 1);
+    while (strcmp(ht->contacts[address].notelp, notelp) != 0 && trackIndex <= SIZE) {
+        address = hash(address+1);
         trackIndex++;
     }
-    return -1;
+    if (trackIndex > SIZE) return -1;
+    else return address; 
 }
 
 void searchData(hashTable ht) {
@@ -168,7 +162,7 @@ void searchData(hashTable ht) {
     printf("Masukkan nomor telepon kontak yang ingin dicari: ");
     scanf("%[^\n]", str);
     fflush(stdin);
-    int index = search(ht, str);
+    int index = search(&ht, str);
     if (index == -1) {
         printf("\nKontak tidak ditemukan!\n");
     } else {
@@ -185,7 +179,7 @@ void editData(hashTable* ht) {
     printf("Masukkan nomor telepon kontak yang ingin diedit: ");
     scanf("%[^\n]", notelp);
     fflush(stdin);
-    int index = search(*ht, notelp);
+    int index = search(ht, notelp);
     if (index == -1) {
         printf("\nKontak tidak ditemukan\n");
         return;
@@ -196,15 +190,4 @@ void editData(hashTable* ht) {
     strcpy(ht->contacts[index].email, temp.email);
     strcpy(ht->contacts[index].notelp, temp.notelp);
     printf("Berhasil mengedit kontak\n");
-}
-
-void printHashTable(hashTable ht) {
-    system("cls");
-    printf("Daftar Kontak");
-    for (int i = 0; i < SIZE; i++) {
-        if (strcmp(ht.contacts[i].notelp, "\0") == 0) continue;
-        printf("\n%2d  Nama: %s\n", i+1, ht.contacts[i].nama);
-        printf("    Email: %s\n", ht.contacts[i].email);
-        printf("    No. Telepon: %s\n", ht.contacts[i].notelp);
-    }
 }
