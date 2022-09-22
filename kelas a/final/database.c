@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #define SIZE 30
+
 typedef struct  {
     char nama[40];
     char email[40];
     char notelp[40];
 } Contact;
+
 typedef struct {
     Contact contacts[SIZE];
 } hashTable;
@@ -30,7 +32,7 @@ int main() {
     initHashTable(&ht);
     int choose = Choose();
 
-    while (choose != 5) {
+    while (choose != 6) {
         switch (choose) {
             case 1:
                 addData(&ht);
@@ -44,6 +46,9 @@ int main() {
             case 4:
                 searchData(ht);
             break;    
+            case 5:
+                printHashTable(ht);
+            break;
             default:
                 printf("Pilihan tidak valid!\n");
         }
@@ -63,8 +68,9 @@ int Choose() {
     printf("2. Hapus Kontak\n");
     printf("3. Edit Kontak\n");
     printf("4. Cari Kontak\n");
-    printf("5. Keluar\n");
-    printf("Pilih (1-5): ");
+    printf("5. Tampilkan Kontak\n");
+    printf("6. Keluar\n");
+    printf("Pilih (1-6): ");
     scanf("%d", &chosen);
     fflush(stdin);
     return chosen;
@@ -148,6 +154,7 @@ void removeData(hashTable* ht) {
 int search(hashTable* ht, char* notelp) {
     int address = hash(getKey(notelp));
     int trackIndex = 0;
+    if (strcmp(ht->contacts[address].notelp, "\0") == 0) return -1;
     while (strcmp(ht->contacts[address].notelp, notelp) != 0 && trackIndex <= SIZE) {
         address = hash(address+1);
         trackIndex++;
@@ -190,4 +197,15 @@ void editData(hashTable* ht) {
     strcpy(ht->contacts[index].email, temp.email);
     strcpy(ht->contacts[index].notelp, temp.notelp);
     printf("Berhasil mengedit kontak\n");
+}
+
+void printHashTable(hashTable ht) {
+    system("cls");
+    printf("Database Kontak\n");
+    for (int i = 0; i < SIZE; i++) {
+        if (strcmp(ht.contacts[i].notelp, "\0") == 0) continue;
+        printf("\n%2d  Nama: %s\n", i+1, ht.contacts[i].nama);
+        printf("    Email: %s\n", ht.contacts[i].email);
+        printf("    No. Telepon: %s\n", ht.contacts[i].notelp);
+    }
 }

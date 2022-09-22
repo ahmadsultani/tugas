@@ -1,0 +1,26 @@
+OPEN : List { Menampung child dari state saat ini }
+CLOSED : List { Menampung path terbaik menuju goal state } 
+h(param1) : function { Menentukan nilai heuristik dari parameter }
+
+OPEN[0] ← start
+start.h ← h(start)
+start.f ← start.h
+
+while OPEN is not empty do
+  currentState = min(OPEN.f)
+
+  if currentState = goalState then
+    return CLOSED
+
+  child <- adjacent state of currentState
+
+  for each child of currentState:
+    if child is in CLOSED then
+      continue
+    
+    child.g = current.g + distance(current, child)
+    child.h = h(child)
+    child.f = child.g + child.h
+
+    if child is not in open and child.g < OPEN[indexof(child)].g then
+      OPEN.add(child)
