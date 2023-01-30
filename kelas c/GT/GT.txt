@@ -1,0 +1,22 @@
+G : Graph
+Sol : array 2D
+Goal : {Goal State}
+
+DFS(G, Sol, Goal) {
+    if (Sol is a solution)
+        return Sol
+    for (each node N in G)
+        if (N is not in Sol)
+            Sol = Sol + N
+            if (DFS(G, Sol, Goal) != null)
+                return Sol
+            Sol = Sol - N
+    return null
+}
+
+init() {
+  Sol = empty array
+  DFS(G, Sol, Goal)
+}
+
+

@@ -1,26 +1,39 @@
-OPEN : List { Menampung child dari state saat ini }
-CLOSED : List { Menampung path terbaik menuju goal state } 
-h(param1) : function { Menentukan nilai heuristik dari parameter }
+OPEN : List { Menampung jalur yang tersedia }
+CLOSED : List { Menampung jalur terbaik menuju goal state } 
 
 OPEN[0] ← start
-start.h ← h(start)
+start.h ← heuristic(start)  
+start.g <- 0
 start.f ← start.h
 
 while OPEN is not empty do
-  currentState = min(OPEN.f)
+  current = find_min_f(OPEN)
+  OPEN.remove(current)
 
-  if currentState = goalState then
+  if current = goalState then
     return CLOSED
 
-  child <- adjacent state of currentState
+  successors <- adjacent state of current
 
-  for each child of currentState:
-    if child is in CLOSED then
+  for each successor of successors:
+    if successor is in CLOSED then
       continue
+    endif
     
-    child.g = current.g + distance(current, child)
-    child.h = h(child)
-    child.f = child.g + child.h
+    successor.g <- current.g + distance(current, successor)
+    successor.h <- heuristic(successor)
+    successor.f <- successor.g + successor.h
 
-    if child is not in open and child.g < OPEN[indexof(child)].g then
-      OPEN.add(child)
+    if successor is in OPEN and successor.f < OPEN[indexof(successor)].f then
+      OPEN.remove(successor)
+    endif
+    
+    if successor is not in open then
+      OPEN.add(successor)
+    endif
+  endfor
+  
+  CLOSED.add(current)
+endwhile
+
+return failure
